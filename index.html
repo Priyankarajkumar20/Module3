@@ -1,0 +1,31 @@
+<html>
+
+<head>
+    <title>Restaurant</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="app.js"></script>
+</head>
+
+<body ng-app="NarrowItDownApp"><br>
+    <h3 class="text-center">RESTAURANT API</h3>
+    <div ng-controller="NarrowItDownController as menu">
+        <table align="center">
+            <tr>
+                <td> <input type="text" name="search" ng-model="menu.serchItem"></td>
+                <td>  <button ng-click="menu.getMenuItems(menu.serchItem)" class="btn btn-primary btn-xs" type="button"
+                        name="btn" ng-click="">Narrow It
+                        Down For
+                        Me!</button></td>
+            </tr>
+        </table><br>
+
+        <found-items found="menu" on-remove="menu.removeItem(index)"></found-items><br>
+        <div  class="alert alert-danger text-center" ng-if="menu.showError"><strong>Nothing Found!</strong></div>
+    </div>
+
+</body>
+
+</html>
