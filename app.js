@@ -7,6 +7,7 @@
     NarrowItDownController.$inject = ['MenuSearchService'];
     function NarrowItDownController(MenuSearchService) {
         var menu = this;
+        menu.searchItem = "";
         menu.getMenuItems = function (searchItem) {
             menu.menuItems = [];
             menu.showError = false;
@@ -15,6 +16,7 @@
             } else {
                 var menuPromise = MenuSearchService.getMatchedMenuItems(searchItem);
                 menuPromise.then(function (response) {
+                    alert(response.length);
                     if (response.length > 0) {
                         menu.menuItems = response;
                     } else {
@@ -29,16 +31,12 @@
         }
     };
 
-    MenuSearchService.$inject = ['$http', 'ApiBasePath', '$q'];
-    function MenuSearchService($http, ApiBasePath, $q) {
+    MenuSearchService.$inject = ['$http', 'ApiBasePath'];
+    function MenuSearchService($http, ApiBasePath) {
         var service = this;
-        var foundItems = [];
-        var deferred = $q.defer();
-        var result = {
-            message: "",
-        };
-        service.getMatchedMenuItems = function (searchItem) {
 
+        service.getMatchedMenuItems = function (searchItem) {
+            var foundItems = [];
             return $http({
                 method: "GET",
                 url: (ApiBasePath + "menu_items.json")
