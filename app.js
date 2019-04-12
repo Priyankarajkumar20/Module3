@@ -16,7 +16,7 @@
             } else {
                 var menuPromise = MenuSearchService.getMatchedMenuItems(searchItem);
                 menuPromise.then(function (response) {
-                    alert(response.length);
+                   
                     if (response.length > 0) {
                         menu.menuItems = response;
                     } else {
