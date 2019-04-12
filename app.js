@@ -34,9 +34,9 @@
     MenuSearchService.$inject = ['$http', 'ApiBasePath'];
     function MenuSearchService($http, ApiBasePath) {
         var service = this;
-
+ var foundItems;
         service.getMatchedMenuItems = function (searchItem) {
-            var foundItems = [];
+             foundItems = [];
             return $http({
                 method: "GET",
                 url: (ApiBasePath + "menu_items.json")
